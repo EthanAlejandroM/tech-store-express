@@ -6,7 +6,7 @@ public class DetallePedido {
     private double precioUnitario;
     private double subtotal;
 
-    //constructor
+    // constructor
     public DetallePedido(Producto producto, int cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
@@ -19,7 +19,7 @@ public class DetallePedido {
         return cantidad * precioUnitario;
     }
 
-    //getters y setters
+    // getters y setters
     public Producto getProducto() {
         return producto;
     }
@@ -34,7 +34,7 @@ public class DetallePedido {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-        this.subtotal = calcularSubtotal(); 
+        this.subtotal = calcularSubtotal();
     }
 
     public double getPrecioUnitario() {
@@ -55,7 +55,7 @@ public class DetallePedido {
 
     @Override
     public String toString() {
-        return producto.getNombre() + " | Cant: " + cantidad + " | Precio: (" + precioUnitario + " | Subtotal: " + subtotal + ")";
+        return producto.getNombre() + " | Cant: " + cantidad + " | Precio: (" + precioUnitario + " | Subtotal: "
+                + subtotal + ")";
     }
 }
-

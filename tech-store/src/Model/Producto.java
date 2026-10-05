@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Producto{
+public class Producto {
     private int Id;
     private String Codigo;
     private String Nombre;
@@ -12,8 +12,9 @@ public class Producto{
     private int StockDisponible;
     private static List<Producto> productosListProductos = new ArrayList<>();
 
-    //constructor
-    public Producto(int id, String codigo, String nombre, String categoría, double precioUnitario, int stockDisponible) {
+    // constructor
+    public Producto(int id, String codigo, String nombre, String categoría, double precioUnitario,
+            int stockDisponible) {
         Id = id;
         Codigo = codigo;
         Nombre = nombre;
@@ -23,8 +24,7 @@ public class Producto{
 
     }
 
-
-    //getters and setters
+    // getters and setters
     public int getId() {
         return Id;
     }
@@ -32,7 +32,7 @@ public class Producto{
     public void setId(int id) {
         Id = id;
     }
-    
+
     public String getCodigo() {
         return Codigo;
     }
@@ -73,44 +73,40 @@ public class Producto{
         StockDisponible = stockDisponible;
     }
 
-
     public static List<Producto> getProductosListProductos() {
         return productosListProductos;
     }
-
 
     public static void setProductosListProductos(List<Producto> productosListProductos) {
         Producto.productosListProductos = productosListProductos;
     }
 
-    
+    // operaciones del modelo
 
-    // operaciones del modelo 
-
-    //registrar
+    // registrar
     public static void addProducto(Producto producto) {
         productosListProductos.add(producto);
     }
 
-    //listar
+    // listar
     public static List<Producto> listarProductos() {
         return productosListProductos;
     }
 
-    //Buscar por Id
+    // Buscar por Id
     public static Producto buscarPorId(int id) {
         for (Producto p : productosListProductos) {
             if (p.getId() == id) {
                 return p;
             }
         }
-        return null; 
+        return null;
     }
 
     // editar producto
     public static boolean editarProducto(Producto productoActualizado) {
         Producto productoExistente = buscarPorId(productoActualizado.getId());
-        
+
         if (productoExistente != null) {
             // Actualizan los campos del producto
             productoExistente.setCodigo(productoActualizado.getCodigo());
@@ -120,27 +116,26 @@ public class Producto{
             productoExistente.setStockDisponible(productoActualizado.getStockDisponible());
             return true; // se logro la modificación
         }
-        
-        return false; //el producto no existia(id)
+
+        return false; // el producto no existia(id)
     }
 
-
-    //eliminar producto
+    // eliminar producto
     public static boolean eliminarProducto(int id) {
         Producto productoAEliminar = buscarPorId(id);
-        
+
         if (productoAEliminar != null) {
             productosListProductos.remove(productoAEliminar);
             return true; // Se elimino el producto
         }
-        
+
         return false; // No se encontró el id
     }
 
     @Override
     public String toString() {
-        return "ID: " + Id + " | Cód: " + Codigo + " | Nombre: " + Nombre + 
-               " | Cat: " + Categoría + " | Precio: $" + PrecioUnitario + 
-               " | Stock: " + StockDisponible;
+        return "ID: " + Id + " | Cód: " + Codigo + " | Nombre: " + Nombre +
+                " | Cat: " + Categoría + " | Precio: $" + PrecioUnitario +
+                " | Stock: " + StockDisponible;
     }
 }

@@ -37,7 +37,7 @@ public class ProductoView extends JFrame {
         setSize(580, 620);
         setLocationRelativeTo(null);
 
-        // Panel de entrada 
+        // Panel de entrada
         JPanel inputPanel = new JPanel(new GridLayout(10, 2, 8, 8));
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -70,7 +70,7 @@ public class ProductoView extends JFrame {
         updateButton = new JButton("Actualizar Producto");
         viewButton = new JButton("Ver Todos");
         removeButton = new JButton("Eliminar por ID");
-        exitButton = new JButton("Salir");
+        exitButton = new JButton("Cerrar");
 
         inputPanel.add(addButton);
         inputPanel.add(updateButton);
@@ -97,37 +97,42 @@ public class ProductoView extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (controller != null) controller.addProducto();
+                if (controller != null)
+                    controller.addProducto();
             }
         });
 
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (controller != null) controller.updateProducto();
+                if (controller != null)
+                    controller.updateProducto();
             }
         });
 
         viewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (controller != null) controller.viewProductos();
+                if (controller != null)
+                    controller.viewProductos();
             }
         });
 
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (controller != null) controller.removeProducto();
+                if (controller != null)
+                    controller.removeProducto();
             }
         });
 
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                dispose();
             }
         });
+
     }
 
     public void setController(ProductoController controller) {
@@ -143,7 +148,8 @@ public class ProductoView extends JFrame {
         String precioStr = precioUniField.getText().trim();
         String stockStr = stockDisField.getText().trim();
 
-        if (idStr.isEmpty() || codigo.isEmpty() || nombre.isEmpty() || categoria.isEmpty() || precioStr.isEmpty() || stockStr.isEmpty()) {
+        if (idStr.isEmpty() || codigo.isEmpty() || nombre.isEmpty() || categoria.isEmpty() || precioStr.isEmpty()
+                || stockStr.isEmpty()) {
             showMessage("Por favor, complete todos los campos.", Color.RED);
             return null;
         }

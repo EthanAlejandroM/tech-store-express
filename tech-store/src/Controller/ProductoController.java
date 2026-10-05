@@ -25,7 +25,7 @@ public class ProductoController {
     // 1. Agregar Producto
     public void addProducto() {
         Producto nuevoProducto = view.getProductoInput();
-        
+
         if (nuevoProducto != null) {
             // Verificar si el ID ya existe antes de agregar
             if (Producto.buscarPorId(nuevoProducto.getId()) != null) {
@@ -36,7 +36,7 @@ public class ProductoController {
             // Guardar en el modelo (lista)
             Producto.addProducto(nuevoProducto);
             view.showMessage("Producto agregado correctamente.", Color.GREEN);
-            
+
             // Actualizar la lista en la vista
             viewProductos();
         }
@@ -48,7 +48,7 @@ public class ProductoController {
 
         if (productoEditado != null) {
             boolean exito = Producto.editarProducto(productoEditado);
-            
+
             if (exito) {
                 view.showMessage("Producto actualizado exitosamente.", Color.GREEN);
                 viewProductos();

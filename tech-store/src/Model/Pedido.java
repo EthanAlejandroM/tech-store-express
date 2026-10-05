@@ -8,6 +8,7 @@ public class Pedido {
     private Cliente cliente;
     private List<DetallePedido> detalles;
     private double total;
+    private double iva;
 
     // 1. Añadido <Pedido> a la lista estática
     private static List<Pedido> pedidosList = new ArrayList<>();
@@ -18,6 +19,7 @@ public class Pedido {
         this.cliente = cliente;
         this.detalles = new ArrayList<>();
         this.total = 0.0;
+        this.iva = 0.0;
     }
 
     // Agregar un producto/detalle al pedido
@@ -38,12 +40,15 @@ public class Pedido {
     // Calcular el total recorriendo cada detalle
     public void calcularTotal() {
         double suma = 0.0;
+
         if (detalles != null) {
-            for (DetallePedido d : detalles) { 
+            for (DetallePedido d : detalles) {
                 suma += d.getSubtotal();
             }
         }
-        this.total = suma;   
+
+        this.iva = suma * 0.19;
+        this.total = suma + iva;
     }
 
     // Operaciones globales de lista de pedidos
@@ -57,9 +62,9 @@ public class Pedido {
         return pedidosList;
     }
 
-    // Ahora este bucle no fallará porque Java sabe que 'pedidosList' contiene objetos 'Pedido'
+
     public static Pedido buscarPorId(int id) {
-        for (Pedido p : pedidosList) { 
+        for (Pedido p : pedidosList) {
             if (p.getIdPedido() == id) {
                 return p;
             }
@@ -84,7 +89,6 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    // 3. Añadido <DetallePedido> al tipo de retorno
     public List<DetallePedido> getDetalles() {
         return detalles;
     }
@@ -93,9 +97,27 @@ public class Pedido {
         return total;
     }
 
+    public double getIva() {
+        return iva;
+    }
+
+     public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public double getSubtotal() {
+        double subtotal = 0.0;
+
+        for (DetallePedido detalle : detalles) {
+            subtotal += detalle.getSubtotal();
+        }
+
+        return subtotal;
+    }
+    
     @Override
     public String toString() {
-        return "Pedido #" + idPedido + " | Cliente: " + (cliente != null ? cliente.getNombreCompleto() : "N/A") + 
-               " | Ítems: " + detalles.size() + " | Total: $" + total;
+        return "Pedido #" + idPedido + " | Cliente: " + (cliente != null ? cliente.getNombreCompleto() : "N/A") +
+                " | Ítems: " + detalles.size() + " | Total: $" + total;
     }
 }
