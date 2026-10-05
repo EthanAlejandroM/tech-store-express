@@ -1,4 +1,6 @@
+import Controller.PedidoController;
 import Controller.ProductoController;
+import View.PedidoView;
 import View.ProductoView;
 
 public class App {
@@ -7,11 +9,17 @@ public class App {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ProductoView view = new ProductoView();
-                ProductoController controller = new ProductoController(view);
+                // Ventana de Productos
+                ProductoView prodView = new ProductoView();
+                ProductoController prodController = new ProductoController(prodView);
+                prodView.setController(prodController);
+                prodView.setVisible(true);
 
-                view.setController(controller);
-                view.setVisible(true);;  // Display the GUI
+                // Ventana de Pedidos
+                PedidoView pedidoView = new PedidoView();
+                PedidoController pedidoController = new PedidoController(pedidoView);
+                pedidoView.setController(pedidoController);
+                pedidoView.setVisible(true);
             }
         });
     }
