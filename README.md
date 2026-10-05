@@ -17,4 +17,46 @@
 
 - **Menú principal:** permite acceder a las diferentes áreas de gestión de la aplicación: productos, clientes y pedidos.
 
-![Ver diagrama](/tech-store/docs/mermaid-diagram-2026-10-05-141859.svg)
+```mermaid
+flowchart LR
+
+    App[App.java] --> MV[MenuView]
+
+    subgraph V["VISTA"]
+        MV
+        PV[ProductoView]
+        CV[ClienteView]
+        PeV[PedidoView]
+    end
+
+    subgraph C["CONTROLADOR"]
+        MC[MenuController]
+        PC[ProductoController]
+        CC[ClienteController]
+        PeC[PedidoController]
+    end
+
+    subgraph M["MODELO"]
+        P[Producto]
+        CL[Cliente]
+        Pe[Pedido]
+    end
+
+    MV --> MC
+
+    MC --> PV
+    MC --> CV
+    MC --> PeV
+
+    PV --> PC
+    CV --> CC
+    PeV --> PeC
+
+    PC --> P
+    CC --> CL
+    PeC --> Pe
+
+    PC -. actualiza .-> PV
+    CC -. actualiza .-> CV
+    PeC -. actualiza .-> PeV
+```
