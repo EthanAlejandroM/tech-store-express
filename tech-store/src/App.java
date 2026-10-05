@@ -1,5 +1,5 @@
-import Controller.ProductoController;
-import View.ProductoView;
+import Controller.MenuController;
+import View.MenuView;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -7,11 +7,11 @@ public class App {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ProductoView view = new ProductoView();
-                ProductoController controller = new ProductoController(view);
+                MenuView view = new MenuView();
+                MenuController controller = new MenuController(view);
 
                 view.setController(controller);
-                view.setVisible(true);;  // Display the GUI
+                view.setVisible(true); // Display the GUI
             }
         });
     }
